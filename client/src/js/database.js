@@ -46,12 +46,14 @@ const tx = textDb.transaction('jate', 'readonly');
 const store = tx.objectStore('jate');
 
 //use .getAll() to get all data in the database.
-const request = store.getAll();
+const request = store.get(1);
 
 //Get confirmation of the request.
 const result = await request;
-console.log('result.value', result);
-return result;
+result
+? console.log('data retrieved from database.', result.value)
+: console.log('data not found');
+return result?.value;
 }
 
 
